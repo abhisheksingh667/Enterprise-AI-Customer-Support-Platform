@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+311venv/
+.venv/
+venv/
+
+# Environment Variables
+.env
+
+# Logs
+logs/
+*.log
+
+# SQLite Database
+enterprise_ai.db
+
+# Runtime Storage
+storage/
+
+# Python cache
+.pytest_cache/
+
+# VS Code
+.vscode/
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Backup requirements
+requirements_old.txt

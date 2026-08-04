@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+311venv/
+.venv/
+
+.git/
+.vscode/
+
+.env
+
+enterprise_ai.db
