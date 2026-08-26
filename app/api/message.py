@@ -1,3 +1,4 @@
+'''
 from fastapi import APIRouter
 
 from app.schemas.message import Message
@@ -16,3 +17,6 @@ def receive_message(data: Message):
         "question": data.question,
         "status": "Received Successfully"
     }
+
+
+'''

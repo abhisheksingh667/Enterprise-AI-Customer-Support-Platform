@@ -18,6 +18,7 @@ router = APIRouter(
 )
 
 
+
 # ---------------------- Register ---------------------- #
 
 @router.post("/register")
