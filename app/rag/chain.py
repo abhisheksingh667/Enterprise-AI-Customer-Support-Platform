@@ -1,11 +1,14 @@
-from app.rag.retriever import Retriever
+'''from app.rag.retriever import Retriever
 from app.llm.llm import LLM
+'''
 from app.llm.prompt import SYSTEM_PROMPT
 
 
 class RAGChain:
 
     def __init__(self, username):
+        from app.rag.retriever import Retriever
+        from app.llm.llm import LLM
 
         self.retriever = Retriever(
             persist_directory=f"storage/users/{username}/chroma_db"

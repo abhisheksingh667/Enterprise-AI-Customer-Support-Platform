@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
@@ -18,6 +20,16 @@ class ChatRequest(BaseModel):
     question: str
 
 
+@lru_cache(maxsize=1)
+def get_rag_service_class():
+    """
+    Lazily import the RAG service.
+    This prevents AI-related dependencies from loading
+    immediately during application startup.
+    """
+    from app.services.rag_service import RAGService
+    return RAGService
+
 @router.post("/")
 def chat(
     request: ChatRequest,
@@ -25,6 +37,9 @@ def chat(
     db: Session = Depends(get_db)
 ):
 
+     # Lazy-load RAGService only when chat endpoint is called
+    RAGService = get_rag_service_class()
+    
     # Generate Answer
     rag_service = RAGService(current_user.username)
     answer = rag_service.search(request.question)

@@ -25,6 +25,7 @@ app = FastAPI(
 )
 
 register_exception_handlers(app)
+
 app.include_router(home_router)
 app.include_router(health_router)
 #app.include_router(message_router)
