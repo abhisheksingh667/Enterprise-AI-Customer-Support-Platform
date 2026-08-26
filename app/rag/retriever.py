@@ -2,11 +2,12 @@ from langchain_community.vectorstores import Chroma
 
 from app.rag.embeddings import EmbeddingModel
 
+
 class Retriever:
 
     def __init__(self, persist_directory):
 
-        embedding = EmbeddingModel().get_embedding()
+        embedding = EmbeddingModel.get_embedding()
 
         self.vector_db = Chroma(
             persist_directory=persist_directory,
@@ -15,11 +16,11 @@ class Retriever:
 
     def retrieve(self, question):
 
-        return self.vector_db.as_retriever(
+        retriever = self.vector_db.as_retriever(
             search_kwargs={"k": 3}
-        ).invoke(question)
+        )
 
-    
+        return retriever.invoke(question) 
 """
 # old version
 

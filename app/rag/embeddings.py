@@ -1,21 +1,24 @@
-from functools import lru_cache
 from langchain_huggingface import HuggingFaceEmbeddings
 
 
-@lru_cache(maxsize=1)
-def get_embedding_model():
-
-    print("Loading embedding model...")
-
-    return HuggingFaceEmbeddings(
-        model_name="BAAI/bge-small-en-v1.5"
-    )
+_embedding_model = None
 
 
 class EmbeddingModel:
 
-    def get_embedding(self):
-        return get_embedding_model()
+    @staticmethod
+    def get_embedding():
+
+        global _embedding_model
+
+        if _embedding_model is None:
+            print("Loading embedding model...")
+
+            _embedding_model = HuggingFaceEmbeddings(
+                model_name="BAAI/bge-small-en-v1.5"
+            )
+
+        return _embedding_model
 """
 # old version
 @lru_cache(maxsize=1)
